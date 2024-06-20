@@ -899,10 +899,38 @@ local function init()
   setMock = nil
 end
 
+-- Check if module even enabled
+local function moduleCheck()
+  local intMod = model.getModule(0)
+  local extMod = model.getModule(1)
+  local modTyp = 5
+
+  if intMod ~= nil then
+    if intMod.Type == modTyp then
+      return 1
+    end
+  end
+
+  if extMod ~= nil then
+    if extMod.Type == modTyp then
+      return 2
+    end
+  end
+
+  return nil
+end
+
+
 -- Main
 local function run(event, touchState)
   if event == nil then
     error("Cannot be run as a model script!")
+    return 2
+  end
+
+  local modChk = moduleCheck()
+  if modChk == nil then
+    error("Enable an ELRS RF module in model settings!")
     return 2
   end
 
