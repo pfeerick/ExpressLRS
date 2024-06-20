@@ -899,7 +899,7 @@ local function init()
   setMock = nil
 end
 
--- Check if module even enabled
+-- Check if an ELRS module enabled
 local function moduleCheck()
   local intMod = model.getModule(0)
   local extMod = model.getModule(1)
@@ -919,7 +919,6 @@ local function moduleCheck()
 
   return nil
 end
-
 
 -- Main
 local function run(event, touchState)
